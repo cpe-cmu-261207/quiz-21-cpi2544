@@ -1,4 +1,3 @@
-callApi();
 
 let gender;
 const taggender = document.getElementById("span-gender-icon");
@@ -10,18 +9,25 @@ const btnGen = document.getElementById("btn-random");
 const maincard = document.getElementById("div-user-card");
 const loading = document.getElementById("div-loading-card");
 
-btnGen.onload = () => {
-  maincard.style.display = "none";
-  loading.style.display;
-};
 
 async function callApi() {
-  const resp = await axios.get("https://randomuser.me/api/");
+  const resp = await axios.get("https://randomuser.me/api/%22);
   if (resp.data.results[0].gender == "female") {
-    taggender.innertext = "👩";
+      spanGenderIcon.innerText = "👩";
   } else {
-    taggender.innertext = "👦";
+      spanGenderIcon.innerText = "👨";
   }
-  tagEmail.innertext;
+  imgProfile.src = resp.data.results[0].picture.large;
+  pName.innerText =
+      resp.data.results[0].name.first + " " + resp.data.results[0].name.last;
+  pAddress.innerText =
+      resp.data.results[0].location.city +
+      " " +
+      resp.data.results[0].location.state +
+      " " +
+      resp.data.results[0].location.country +
+      " " +
+      resp.data.results[0].location.postcode;
+  pEmail.innerText = resp.data.results[0].email;
   console.log(resp.data.results[0]);
 }
